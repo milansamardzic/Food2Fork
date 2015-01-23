@@ -1,0 +1,131 @@
+package com.milansamardzic.food2fork;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by ms on 1/18/15.
+ */
+public class SortByTrand extends Fragment {
+
+    private ListView lvMovies;
+    private ReceptiAdapter adapterMovies;
+    private Fork2FoodClient client;
+    public static final String MOVIE_DETAIL_KEY = "recipes";
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.tranding, container, false);
+        lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
+
+
+
+        //----- listView
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getActivity().getApplicationContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fetchBoxOfficeMovies("&sort=t");
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+
+        });
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+
+        ArrayList<Recept> aMovies = new ArrayList<Recept>();
+        adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
+
+        GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
+        gridview.setAdapter(adapterMovies);
+        fetchBoxOfficeMovies("&sort=t");
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                        Intent i = new Intent(getActivity(), DetailAct.class);
+                        // i.putExtra(MOVIE_DETAIL_KEY, adapterMovies.getItem(position));
+                        i.putExtra("POSITION_RID", adapterMovies.getItem(position).getrId());
+                        i.putExtra("POSITION", position);
+                        startActivity(i);
+            }
+        });
+
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.layout_wave_scale);
+        gridview.setAnimation(anim);
+        anim.setDuration(1000);
+        anim.start();
+
+
+        return rootView;
+
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void fetchBoxOfficeMovies(String link) {
+
+        adapterMovies.clear();
+        client = new Fork2FoodClient();
+        client.getRecept(new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject body) {
+                JSONArray items = null;
+                try {
+                    // Get the movies json array
+                    items = body.getJSONArray("recipes");
+                    // Parse json array into array of model objects
+                    ArrayList<Recept> movies = Recept.fromJson(items);
+                    Log.d("sve", String.valueOf(movies));
+                    // Load model objects into the adapter which displays them
+                    adapterMovies.addAll(movies);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, link);
+
+    }
+
+}

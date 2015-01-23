@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="8dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/primary"
+        android:id="@+id/relativeLayout">
+
+
+        <TextView
+            android:visibility="visible"
+            android:text="YOU HAVE..."
+            android:layout_width="match_parent"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <EditText
+                android:visibility="invisible"
+                android:gravity="center"
+                android:id="@+id/etFirst"
+                android:background="@color/primary_light"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/accent_material_light"
+                android:hint="milk"
+                android:textColorHighlight="@color/hint_foreground_material_light"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:visibility="invisible"
+                android:gravity="center"
+                android:id="@+id/etSecond"
+                android:background="@color/primary_light"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/accent_material_light"
+                android:hint="carrot"
+                android:textColorHighlight="@color/hint_foreground_material_light"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:visibility="invisible"
+                android:gravity="center"
+                android:id="@+id/etThird"
+                android:background="@color/primary_light"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/accent_material_light"
+                android:hint="eggs"
+                android:textColorHighlight="@color/hint_foreground_material_light"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:text="+"
+        android:textSize="40sp"
+        android:paddingBottom="16dp"
+        android:background="@color/primary"
+        android:id="@+id/fabbutton"
+        android:elevation="3dp"
+        android:fontFamily="sans-serif-light"
+        android:layout_gravity="right|bottom"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="35dp" />
+
+    <ImageButton
+        android:visibility="invisible"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:textSize="40sp"
+        android:background="@color/accent"
+        android:id="@+id/fabbuttonSearch"
+        android:elevation="3dp"
+        android:fontFamily="sans-serif-light"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="71dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="125dp" />
+
+    <ListView
+        android:id="@+id/lvRecepti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout" />
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MyTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+
+        <!-- The layout for the search view. Be careful. -->
+        <item name="layout">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Background for the search query section (e.g. EditText) -->
+        <item name="queryBackground">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Background for the actions section (e.g. voice, submit) -->
+        <item name="submitBackground">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Close button icon -->
+        <item name="closeIcon">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Search button icon -->
+        <item name="searchIcon">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Go/commit button icon -->
+        <item name="goIcon">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Voice search button icon -->
+        <item name="voiceIcon">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Commit icon shown in the query suggestion row -->
+        <item name="commitIcon">@android:drawable/ic_menu_close_clear_cancel</item>
+        <!-- Layout for query suggestion rows -->
+        <item name="suggestionRowLayout">@android:drawable/ic_menu_close_clear_cancel</item>
+    </style>
+
+</resources>

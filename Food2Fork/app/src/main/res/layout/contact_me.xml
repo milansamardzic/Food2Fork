@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/subjectRL"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:elevation="8dp"
+        android:background="@color/primary">
+
+        <EditText
+            android:id="@+id/tvSubject"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject for developer"
+            android:background="#fff"
+            android:textColor="#141414"
+            android:textColorHint="#efefef"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/textEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/subjectRL"
+        android:layout_above="@+id/relativeLayout3">
+
+        <EditText
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Message"
+            android:gravity="start"
+            android:background="#fff"
+            android:textColor="#141414"
+            android:singleLine="false"
+            android:textColorHint="#efefef"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primary"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relativeLayout3"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/sendEmail"
+            android:layout_marginRight="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="onClick"
+            android:background="@drawable/abc_ic_go_search_api_mtrl_alpha"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

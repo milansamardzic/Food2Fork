@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:label="search"
+    android:hint="enter"
+    android:searchSuggestAuthority="dictionary"
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
+    android:includeInGlobalSearch="true"
+    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
+    android:voiceLanguageModel="web_search"/>
