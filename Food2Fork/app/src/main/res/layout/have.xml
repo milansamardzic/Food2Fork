@@ -79,32 +79,43 @@
     </RelativeLayout>
 
 
-
     <com.andexert.library.RippleView
-        android:id="@+id/addRipple"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-
-        android:layout_gravity="right|bottom"
-        android:layout_marginLeft="35dp"
-        android:layout_marginBottom="35dp"
+        android:id="@+id/more2"
+        android:elevation="15dp"
+        android:layout_width="?android:actionBarSize"
+        android:layout_height="?android:actionBarSize"
+        ripple:rv_centered="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        ripple:rv_centered="true">
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp">
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:text="+"
         android:textSize="40sp"
         android:paddingBottom="16dp"
         android:background="@color/primary"
         android:id="@+id/fabbutton"
         android:elevation="3dp"
+
         android:fontFamily="sans-serif-light"/>
+
     </com.andexert.library.RippleView>
+
+    <com.andexert.library.RippleView
+        android:id="@+id/searchRipple"
+        android:elevation="15dp"
+        android:layout_width="?android:actionBarSize"
+        android:layout_height="?android:actionBarSize"
+        ripple:rv_centered="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="71dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="125dp">
 
     <ImageButton
         android:visibility="invisible"
@@ -117,13 +128,9 @@
         android:id="@+id/fabbuttonSearch"
         android:elevation="3dp"
         android:fontFamily="sans-serif-light"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="71dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="125dp" />
+       />
+
+    </com.andexert.library.RippleView>
 
     <ListView
         android:id="@+id/lvRecepti"
