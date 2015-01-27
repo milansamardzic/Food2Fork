@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.andexert.library.RippleView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
@@ -43,6 +44,7 @@ public class Have extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.have, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
 
+        final RippleView rippleView = (RippleView) rootView.findViewById(R.id.addRipple);
         Button fabB = (Button) rootView.findViewById(R.id.fabbutton);
         fabS = (ImageButton) rootView.findViewById(R.id.fabbuttonSearch);
 
@@ -72,6 +74,16 @@ public class Have extends android.support.v4.app.Fragment {
             }
         });
         rootView.findViewById(R.id.fabbuttonSearch).setClipToOutline(true);
+
+        rippleView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                helpper++;
+                show(helpper);
+            }
+        });
 
 
         fabB.setOnClickListener(new View.OnClickListener() {

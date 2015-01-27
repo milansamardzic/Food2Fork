@@ -68,6 +68,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
     ListView lvIngredients;
     ImageButton fabB;
 
+    public String checkString=null;
 
     public String saveJson=null;
     public ArrayList<String> ars = new ArrayList<>();
@@ -196,24 +197,6 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
 
     }
 
-    public void setIcon(){
-        TinyDB tinydb = new TinyDB(getApplicationContext());
-        ArrayList check = (tinydb.getList("MySaved"));
-        Boolean isDeleted=false;
-
-        ars = check;
-
-        for(int i=0; i<ars.size(); i++) {
-            if (ars.get(i).contains(rid)) {
-                fabB.setImageResource(R.drawable.fork_fav);
-                isDeleted = true;
-            }else{ isDeleted=false;}
-        }
-
-        if (isDeleted==false) {
-                fabB.setImageResource(R.drawable.fork);
-        }
-    }
 
     private void save() {
         TinyDB tinydb = new TinyDB(getApplicationContext());
@@ -225,7 +208,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
             if (ars.get(i).contains(rid)) {
                 ars.remove(i);
                 fabB.setImageResource(R.drawable.fork);
-                Toast.makeText(getApplicationContext(), "Removed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Removed", Toast.LENGTH_SHORT).show();
                 tinydb.putList("MySaved", ars);
                 isDeleted = true;
             }else{ isDeleted=false;}
@@ -240,12 +223,14 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
             } else {
 
                 ars.add(saveJson);
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
                 fabB.setImageResource(R.drawable.fork_fav);
                 tinydb.putList("MySaved", ars);
 
             }
         }
+
+
     }
 
     String rid;
@@ -286,6 +271,14 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
                     btnPublisher.setText(det.getPublisher());
                     btnSocialRank.setText(String.valueOf(det.getSocialRank()) + " %");
                     Picasso.with(getBaseContext()).load(det.getImage()).into(ivHeader);
+
+
+
+                    TinyDB tinydb = new TinyDB(getApplicationContext());
+                    ArrayList check = (tinydb.getList("MySaved"));
+                   for (int i=0; i<check.size();i++)
+                       if(check.get(i).toString().contains(det.getrId()))
+                       {fabB.setImageResource(R.drawable.fork_fav);}
 
                 } catch (JSONException e) {
                     e.printStackTrace();
