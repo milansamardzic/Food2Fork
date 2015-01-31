@@ -3,6 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
+        android:id="@+id/pagePrev"
+        android:title="Prev page"
+        android:icon="@drawable/circle_l"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
+
+    <item
+        android:id="@+id/pageNext"
+        android:title="Next page"
+        android:icon="@drawable/circle"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
+    <item
         android:id="@+id/search111"
         android:title="Search"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"

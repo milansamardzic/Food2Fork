@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -35,14 +36,15 @@ public class Rating extends Fragment {
     public static final String MOVIE_DETAIL_KEY = "recipes";
     private int currentVisibleItemCount;
     private int currentFirstVisibleItem;
-
+    public static int page=1;
+    FloatingActionButton fabMore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
-
+      //  fabMore =  (FloatingActionButton) rootView.findViewById(R.id.fabbuttonLoad);
         View toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
@@ -74,18 +76,24 @@ public class Rating extends Fragment {
         // Fetch the data remotely
         fetchBoxOfficeMovies("&sort=r");
         setupMovieSelectedListener();
-
+    //    fabMore.attachToListView(lvMovies);
         lvMovies.setLayoutAnimation(controller);
 /*
-        int page=1;
-        if (lvMovies.getLastVisiblePosition() == (adapterMovies.getCount() - 1))
-        {
-
-            page++;
-            Toast.makeText(getActivity(), "kraj " + page, Toast.LENGTH_SHORT).show();
-            fetchBoxOfficeMovies("&sort=r&"+page);
-        }*/
+       fabMore.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               showMore();
+               //fabMore.show(true);
+           }
+       });*/
         return rootView;
+    }
+
+    private void showMore() {
+        page++;
+        Toast.makeText(getActivity(), "kraj " + page, Toast.LENGTH_SHORT).show();
+        fetchBoxOfficeMovies("&sort=r&"+page);
+
     }
 
 

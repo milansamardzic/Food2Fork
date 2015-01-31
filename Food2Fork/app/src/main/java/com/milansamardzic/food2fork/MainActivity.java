@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle drawerToggle;
     private ListView leftDrawerList;
     private ArrayAdapter<String> navigationDrawerAdapter;
-    private String[] leftSliderData = {"Rating", "Tranding", "Saved", "I have ...", "Contact Me",  "About"};
+    private String[] leftSliderData = {"Rating", "Tranding", "Vegetarian", "Vegan", "Meat", "I want to cook this", "I have ...", "Contact Me",  "About"};
 
 
 
@@ -155,6 +155,14 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
               onSearchRequested();
                 return true;
 
+            case R.id.pagePrev:
+                onSearchRequested();
+                return true;
+
+            case R.id.pageNext:
+                onSearchRequested();
+                return true;
+
             default:
                 return false;
         }
@@ -233,18 +241,30 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
                 break;
             case 2:
-                selected = new SavedRec();
+                selected = new Vegetarian();
                 fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
                 break;
             case 3:
-                selected = new Have();
+                selected = new Vegan();
                 fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
                 break;
             case 4:
-                selected = new ContactMe();
+                selected = new Meat();
                 fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
                 break;
             case 5:
+                selected = new SavedRec();
+                fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
+                break;
+            case 6:
+                selected = new Have();
+                fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
+                break;
+            case 7:
+                selected = new ContactMe();
+                fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
+                break;
+            case 8:
                 selected = new About();
                 fragmentManager.beginTransaction().replace(R.id.mainContent, selected).commit();
                 break;

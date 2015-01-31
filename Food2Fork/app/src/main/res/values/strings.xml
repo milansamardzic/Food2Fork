@@ -9,4 +9,5 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="Add_to_cal">Add to cal</string>
+    <string name="name">Food2Fork</string>
 </resources>

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="200dp">
+            android:layout_height="200dp"
+            android:id="@+id/relativeLayout2">
             <RelativeLayout
                 android:id="@+id/aboutHeder"
                 android:layout_width="match_parent"
@@ -17,6 +18,16 @@
                 android:background="@color/primary"
                 android:gravity="center">
 
+                <com.andexert.library.RippleView
+                    android:id="@+id/more4"
+                    android:gravity="center"
+                    android:elevation="15dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    ripple:rv_centered="true"
+                    android:layout_gravity="right|bottom"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true">
 
                 <ImageView
                     android:id="@+id/splashscreen"
@@ -25,62 +36,71 @@
                     android:gravity="center"
                     android:background="@drawable/logo_256"/>
 
+                </com.andexert.library.RippleView>
+
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/middlePart"
+        </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+    <RelativeLayout
+        android:id="@+id/middlePart"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/aboutHeder"
+        android:layout_height="250dp"
+
+        android:gravity="center">
+
+
+        <RelativeLayout
+            android:id="@+id/abutLogoA"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_below="@+id/aboutHeder"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="12sp"
+                android:scrollbarStyle="insideInset"
+                android:text="Food2Fork is an ever expanding recipe website. It strives to bring people closer by being able share your favorite meals and recipes with everyone around the world. By combining ingredients and title search, Food2Fork makes finding recipes easy.\n\nFood2Fork recipes are from everyday cooks and chefs that have perfected the recipe over time. Food2Fork recipes range from the decadent to the simple for whatever mood you are in. With recipes being added daily there will alway be something new for you to crave.\n\n\n\nAutor: Milan Samardzic\nVersion: 1.0\nYear: 2015"
+                android:id="@+id/textView2" />
 
-                android:gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/github"
+                android:visibility="visible"
+                android:id="@+id/imageView2"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignRight="@+id/textView2"
+                android:layout_alignEnd="@+id/textView2"
+                android:layout_marginBottom="34dp" />
 
-
-                <RelativeLayout
-                    android:id="@+id/abutLogoA"
-                    android:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:fontFamily="sans-serif-light"
-                        android:textSize="12sp"
-                        android:scrollbarStyle="insideInset"
-                        android:text="Food2Fork is an ever expanding recipe website. It strives to bring people closer by being able share your favorite meals and recipes with everyone around the world. By combining ingredients and title search, Food2Fork makes finding recipes easy.\n\nFood2Fork recipes are from everyday cooks and chefs that have perfected the recipe over time. Food2Fork recipes range from the decadent to the simple for whatever mood you are in. With recipes being added daily there will alway be something new for you to crave.\n\n\n\nAutor: Milan Samardzic\nVersion: 1.0\nYear: 2015"
-                        android:id="@+id/textView2" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/github"
-                        android:visibility="visible"
-                        android:id="@+id/imageView2"
-                        android:layout_alignBottom="@+id/textView2"
-                        android:layout_alignRight="@+id/textView2"
-                        android:layout_alignEnd="@+id/textView2"
-                        android:layout_marginBottom="34dp" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/google_plus"
-                        android:visibility="visible"
-                        android:id="@+id/imageView3"
-                        android:layout_alignBottom="@+id/textView2"
-                        android:layout_alignRight="@+id/textView2"
-                        android:layout_alignEnd="@+id/textView2" />
-
-
-                </RelativeLayout>
-
-
-            </RelativeLayout>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/google_plus"
+                android:visibility="visible"
+                android:id="@+id/imageView3"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignRight="@+id/textView2"
+                android:layout_alignEnd="@+id/textView2" />
 
 
         </RelativeLayout>
+
+
+    </RelativeLayout>
     </ScrollView>
 
 

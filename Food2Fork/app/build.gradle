@@ -31,5 +31,6 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.4.0'
     compile 'com.github.traex.rippleeffect:library:1.2.3'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.melnykov:floatingactionbutton:1.1.0'
 
 }

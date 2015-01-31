@@ -3,7 +3,6 @@ package com.milansamardzic.food2fork;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +25,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.manuelpeinado.fadingactionbar.view.ObservableScrollable;
 import com.manuelpeinado.fadingactionbar.view.OnScrollChangedCallback;
+import com.melnykov.fab.FloatingActionButton;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.squareup.picasso.Picasso;
 
@@ -58,7 +56,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
     public String f2fUrl=null;
     public String publisherUrl = null;
     public String ingredientsString = "";
-
+    String name = "Food2Fork";
     Button btnPublisher;
     TextView tvIngredients;
     Button btnSocialRank;
@@ -66,7 +64,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
     Button btnSeeOnWeb;
     Button btnCalendar;
     ListView lvIngredients;
-    ImageButton fabB;
+    FloatingActionButton fabB;
 
     public String checkString=null;
 
@@ -79,7 +77,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
 
-        fabB = (ImageButton) findViewById(R.id.fabbuttonFav);
+      //  fabB = (ImageButton) findViewById(R.id.fabbuttonFav);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         btnPublisher = (Button) findViewById(R.id.btnPublisher);
         tvIngredients = (TextView) findViewById(R.id.tvIngredients);
@@ -174,6 +172,15 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
 
         onScroll(-1, 0);
 
+
+        fabB = (FloatingActionButton) findViewById(R.id.fab);
+        fabB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        });
+        /*
         Outline mOutlineCircle;
         int shapeSize = getResources().getDimensionPixelSize(R.dimen.button_elevation);
         mOutlineCircle = new Outline();
@@ -194,6 +201,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
                 save();
             }
         });
+        */
 
     }
 
@@ -344,9 +352,10 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
                 super.onBackPressed();
                 return true;
             case R.id.share:{
+
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, title + " by " + f2fUrl + " via [" + R.string.app_name + "] " + imageUrl);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, title + " by " + f2fUrl + " via [ " + name + " ] " + imageUrl);
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
                 return true;

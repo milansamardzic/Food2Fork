@@ -1,16 +1,20 @@
 package com.milansamardzic.food2fork;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.melnykov.fab.FloatingActionButton;
@@ -23,84 +27,71 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by ms on 1/22/15.
+ * Created by ms on 1/28/15.
  */
-public class Have extends android.support.v4.app.Fragment {
+public class Vegan  extends Fragment {
+
     private ListView lvMovies;
     private ReceptiAdapter adapterMovies;
     private Fork2FoodClient client;
     public static final String MOVIE_DETAIL_KEY = "recipes";
-    EditText et1, et2, et3;
-    public int helpper=0;
-    // ImageButton fabS;
+    private int currentVisibleItemCount;
+    private int currentFirstVisibleItem;
+    public static int page = 1;
+    FloatingActionButton fabMore;
+    final String strtext = "vegan";
 
-    FloatingActionButton fabBtn;
-    FloatingActionButton fabSbtn;
-
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.have, container, false);
+        final View rootView = inflater.inflate(R.layout.tranding, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
 
-        fabBtn = (FloatingActionButton) rootView.findViewById(R.id.fabBtn);
-        fabSbtn = (FloatingActionButton) rootView.findViewById(R.id.fabbuttonSearch);
 
 
-        et1 = (EditText) rootView.findViewById(R.id.etFirst);
-        et2 = (EditText) rootView.findViewById(R.id.etSecond);
-        et3 = (EditText) rootView.findViewById(R.id.etThird);
-
-
-        fabBtn.setOnClickListener(new View.OnClickListener() {
+        //----- listView
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-                helpper++;
-                show(helpper);
+            public void onRefresh() {
+                Toast.makeText(getActivity().getApplicationContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fetchBoxOfficeMovies("&sort=t");
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+
+        });
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+
+        ArrayList<Recept> aMovies = new ArrayList<Recept>();
+        adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
+
+        GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
+        gridview.setAdapter(adapterMovies);
+        fetchBoxOfficeMovies("&sort=t");
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Intent i = new Intent(getActivity(), DetailAct.class);
+                // i.putExtra(MOVIE_DETAIL_KEY, adapterMovies.getItem(position));
+                i.putExtra("POSITION_RID", adapterMovies.getItem(position).getrId());
+                i.putExtra("POSITION", position);
+                startActivity(i);
             }
         });
 
-        fabSbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String q1=et1.getText().toString();
-                String q2=et2.getText().toString();
-                String q3=et3.getText().toString();
-                if(q1!="" || q2!="" || q3!="") {
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.layout_wave_scale);
+        gridview.setAnimation(anim);
+        anim.setDuration(1000);
+        anim.start();
 
-                    ArrayList<Recept> aMovies = new ArrayList<Recept>();
-                    adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
-                    lvMovies.setAdapter(adapterMovies);
-                    fetchBoxOfficeMovies(q1 + " " + q2 + " " + q3);
 
-                }
-            }
-        });
-
-        setupMovieSelectedListener();
         return rootView;
     }
-
-    private void show(int pom) {
-
-        switch (pom){
-            case 1:
-                et1.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                et2.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                et3.setVisibility(View.VISIBLE);
-                break;
-            default:
-                //do-nothing
-        }
-        fabSbtn.setVisibility(View.VISIBLE);
-    }
-
 
     public void fetchBoxOfficeMovies(String link) {
 
@@ -141,5 +132,6 @@ public class Have extends android.support.v4.app.Fragment {
             }
         });
     }
+
 
 }

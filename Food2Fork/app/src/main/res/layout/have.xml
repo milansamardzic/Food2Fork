@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="8dp">
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -28,7 +27,8 @@
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout">
             <EditText
                 android:visibility="invisible"
                 android:gravity="center"
@@ -75,62 +75,8 @@
                 android:layout_margin="10dp"/>
         </LinearLayout>
 
-
     </RelativeLayout>
 
-
-    <com.andexert.library.RippleView
-        android:id="@+id/more2"
-        android:elevation="15dp"
-        android:layout_width="?android:actionBarSize"
-        android:layout_height="?android:actionBarSize"
-        ripple:rv_centered="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp">
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:text="+"
-        android:textSize="40sp"
-        android:paddingBottom="16dp"
-        android:background="@color/primary"
-        android:id="@+id/fabbutton"
-        android:elevation="3dp"
-
-        android:fontFamily="sans-serif-light"/>
-
-    </com.andexert.library.RippleView>
-
-    <com.andexert.library.RippleView
-        android:id="@+id/searchRipple"
-        android:elevation="15dp"
-        android:layout_width="?android:actionBarSize"
-        android:layout_height="?android:actionBarSize"
-        ripple:rv_centered="true"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="71dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="125dp">
-
-    <ImageButton
-        android:visibility="invisible"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-        android:textSize="40sp"
-        android:background="@color/accent"
-        android:id="@+id/fabbuttonSearch"
-        android:elevation="3dp"
-        android:fontFamily="sans-serif-light"
-       />
-
-    </com.andexert.library.RippleView>
 
     <ListView
         android:id="@+id/lvRecepti"
@@ -140,5 +86,35 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout" />
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fabBtn"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_plus"
+        android:layout_gravity="right|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        fab:fab_colorNormal="@color/primary"
+        fab:fab_colorPressed="@color/primary_light"
+        fab:fab_colorRipple="@color/primary_dark"
+        fab:fab_shadow="true"/>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fabbuttonSearch"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="71dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="120dp"/>
+
+
 
 </RelativeLayout>
