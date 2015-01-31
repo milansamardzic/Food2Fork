@@ -1,9 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+=======
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="8dp">
+>>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
 
     <RelativeLayout
@@ -78,6 +85,7 @@
     </RelativeLayout>
 
 
+<<<<<<< HEAD
     <ListView
         android:id="@+id/lvRecepti"
         android:layout_width="match_parent"
@@ -101,6 +109,34 @@
         fab:fab_colorPressed="@color/primary_light"
         fab:fab_colorRipple="@color/primary_dark"
         fab:fab_shadow="true"/>
+=======
+
+    <com.andexert.library.RippleView
+        android:id="@+id/addRipple"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+
+        android:layout_gravity="right|bottom"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        ripple:rv_centered="true">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="+"
+        android:textSize="40sp"
+        android:paddingBottom="16dp"
+        android:background="@color/primary"
+        android:id="@+id/fabbutton"
+        android:elevation="3dp"
+        android:fontFamily="sans-serif-light"/>
+    </com.andexert.library.RippleView>
+>>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fabbuttonSearch"

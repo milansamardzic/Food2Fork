@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.andexert.library.RippleView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -45,14 +46,56 @@ public class Have extends android.support.v4.app.Fragment {
         final View rootView = inflater.inflate(R.layout.have, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
 
+<<<<<<< HEAD
         fabBtn = (FloatingActionButton) rootView.findViewById(R.id.fabBtn);
         fabSbtn = (FloatingActionButton) rootView.findViewById(R.id.fabbuttonSearch);
 
+=======
+        final RippleView rippleView = (RippleView) rootView.findViewById(R.id.addRipple);
+        Button fabB = (Button) rootView.findViewById(R.id.fabbutton);
+        fabS = (ImageButton) rootView.findViewById(R.id.fabbuttonSearch);
+>>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
         et1 = (EditText) rootView.findViewById(R.id.etFirst);
         et2 = (EditText) rootView.findViewById(R.id.etSecond);
         et3 = (EditText) rootView.findViewById(R.id.etThird);
 
+<<<<<<< HEAD
+=======
+        Outline mOutlineCircle;
+        int shapeSize = getResources().getDimensionPixelSize(R.dimen.button_elevation);
+        mOutlineCircle = new Outline();
+        mOutlineCircle.setRoundRect(0, 0, shapeSize, shapeSize, shapeSize / 2);
+
+        fabB.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                int size = getResources().getDimensionPixelSize(R.dimen.fab_size);
+                outline.setOval(0, 0, size, size);
+            }
+        });
+        rootView.findViewById(R.id.fabbutton).setClipToOutline(true);
+
+        fabS.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                int size = getResources().getDimensionPixelSize(R.dimen.fab_size);
+                outline.setOval(0, 0, size, size);
+            }
+        });
+        rootView.findViewById(R.id.fabbuttonSearch).setClipToOutline(true);
+
+        rippleView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                helpper++;
+                show(helpper);
+            }
+        });
+
+>>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
