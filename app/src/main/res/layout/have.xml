@@ -1,16 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-=======
+    xmlns:fab="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="8dp">
->>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
 
     <RelativeLayout
@@ -28,6 +22,7 @@
             android:textSize="18sp"
             android:padding="10dp"
             android:layout_height="wrap_content" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -36,6 +31,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/linearLayout">
+
             <EditText
                 android:visibility="invisible"
                 android:gravity="center"
@@ -49,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp" />
 
             <EditText
                 android:visibility="invisible"
@@ -64,7 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp" />
 
             <EditText
                 android:visibility="invisible"
@@ -79,13 +75,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp" />
         </LinearLayout>
 
     </RelativeLayout>
 
-
-<<<<<<< HEAD
     <ListView
         android:id="@+id/lvRecepti"
         android:layout_width="match_parent"
@@ -94,22 +88,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout" />
-
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fabBtn"
-        android:visibility="visible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add_plus"
-        android:layout_gravity="right|bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
-        fab:fab_colorNormal="@color/primary"
-        fab:fab_colorPressed="@color/primary_light"
-        fab:fab_colorRipple="@color/primary_dark"
-        fab:fab_shadow="true"/>
-=======
 
     <com.andexert.library.RippleView
         android:id="@+id/addRipple"
@@ -124,19 +102,18 @@
         android:layout_alignParentStart="true"
         ripple:rv_centered="true">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="+"
-        android:textSize="40sp"
-        android:paddingBottom="16dp"
-        android:background="@color/primary"
-        android:id="@+id/fabbutton"
-        android:elevation="3dp"
-        android:fontFamily="sans-serif-light"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="+"
+            android:textSize="40sp"
+            android:paddingBottom="16dp"
+            android:background="@color/primary"
+            android:id="@+id/fabbutton"
+            android:elevation="3dp"
+            android:fontFamily="sans-serif-light" />
     </com.andexert.library.RippleView>
->>>>>>> 483dd003a65394db344d80c10a3f2794c8441e13
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fabbuttonSearch"
@@ -149,8 +126,7 @@
         android:layout_marginEnd="71dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="120dp"/>
-
+        android:layout_marginTop="120dp" />
 
 
 </RelativeLayout>
