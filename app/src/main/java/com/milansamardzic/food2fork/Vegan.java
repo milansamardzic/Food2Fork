@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.etsy.android.grid.StaggeredGridView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -71,7 +72,7 @@ public class Vegan  extends Fragment {
         ArrayList<Recept> aMovies = new ArrayList<Recept>();
         adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
 
-        GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
+        StaggeredGridView gridview = (StaggeredGridView) rootView.findViewById(R.id.gridview);
         gridview.setAdapter(adapterMovies);
         fetchBoxOfficeMovies("&sort=t");
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,12 +84,6 @@ public class Vegan  extends Fragment {
                 startActivity(i);
             }
         });
-
-        Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.layout_wave_scale);
-        gridview.setAnimation(anim);
-        anim.setDuration(1000);
-        anim.start();
-
 
         return rootView;
     }

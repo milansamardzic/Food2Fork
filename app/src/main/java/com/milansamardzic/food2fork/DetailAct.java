@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by ms on 1/18/15.
@@ -131,8 +132,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
                             .setData(CalendarContract.Events.CONTENT_URI)
                             .putExtra(CalendarContract.Events.TITLE, title)
                             .putExtra(CalendarContract.Events.DESCRIPTION, ingredientsString)
-                            .putExtra(CalendarContract.Events.EVENT_LOCATION, "Home")
-                            .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
+                            .putExtra(CalendarContract.Events.EVENT_LOCATION, "Home");
                     startActivity(intent);
                 } else {
                     Calendar cal = Calendar.getInstance();
@@ -266,15 +266,16 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
                     int pom=0;
                     TextView tvI = (TextView) findViewById(R.id.tvI);
                     tvI.setText("Ingredients (" + (list.size()) + ")");
+                    // List<String> ingList = new ArrayList<String>();
                     for (int i=0; i<list.size(); i++)
                     {
-
                         //String no = "<b>" + String.valueOf(i+1) + "</b>";
                         String part = "\n" + (i+1) + ". " + Html.fromHtml("&#187") + " " + list.get(i).toString()  + "\n";
-                        tvIngredients.append( part);
+                        tvIngredients.append(part);
                         ingredientsString = ingredientsString + part;
-
+                     //   ingList.add(ingredientsString);
                     }
+                   // lvIngredients.setAdapter(new IngAdapter(getApplicationContext(), ingList));
 
                     btnPublisher.setText(det.getPublisher());
                     btnSocialRank.setText(String.valueOf(det.getSocialRank()) + " %");

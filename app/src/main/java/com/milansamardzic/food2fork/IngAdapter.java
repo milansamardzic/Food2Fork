@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ms on 1/21/15.
@@ -16,29 +17,20 @@ import java.util.ArrayList;
 public class IngAdapter extends ArrayAdapter<String> {
 
 
-    public IngAdapter(Context context, ArrayList<String> ingredientsArray) {
-        super(context, 0, ingredientsArray);
+    public IngAdapter(Context context, List<String> ingList) {
+        super(context, 0, ingList);
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-       String ing = getItem(position);
-       RelativeLayout rlIngRL;
-
         if (convertView == null) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.one_recept_ing, null);
-    }
+        }
 
-         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvIng);
-        rlIngRL = (RelativeLayout) convertView.findViewById(R.id.rlIngRL);
-        tvTitle.setText(position  +1 +" " + ing);
-
-        if( (position%2)==0 ){
-
-        rlIngRL.setBackgroundColor(R.color.md_amber_600);}
-        else{
-            rlIngRL.setBackgroundColor(R.color.primary);}
+        String ing = getItem(position);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvIng);
+        tvTitle.setText(ing);
 
         return  convertView;
     }

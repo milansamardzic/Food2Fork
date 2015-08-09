@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#efefef"
+    android:background="@android:color/transparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +12,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="270dp" >
+        android:layout_height="wrap_content" >
         <!-- Your card content -->
 
         <RelativeLayout
@@ -28,7 +28,7 @@
                 android:elevation="8dp"
                 android:layout_alignParentTop="true"
                 android:layout_width="match_parent"
-                android:layout_height="230dp" />
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:layout_width="match_parent"

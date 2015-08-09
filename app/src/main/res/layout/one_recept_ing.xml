@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_margin="10dp"
-    android:background="@color/md_white_1000"
+    android:background="@color/green"
     android:id="@+id/rlIngRL">
 
     <ImageView
@@ -20,6 +20,7 @@
         android:id="@+id/tvIng"
         android:text="left"
         android:gravity="left"
+        android:textColor="@android:color/white"
         android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

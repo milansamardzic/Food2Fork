@@ -12,6 +12,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.etsy.android.grid.StaggeredGridView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,7 +60,7 @@ public class SavedRec extends android.support.v4.app.Fragment {
         ArrayList<Detalji> aMovies = new ArrayList<Detalji>();
         mySavedAdapter = new AdapterSaved(getActivity(), aMovies);
 
-        GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
+        StaggeredGridView gridview = (StaggeredGridView) rootView.findViewById(R.id.gridview);
 
         loadSaved();
 

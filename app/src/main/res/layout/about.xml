@@ -71,8 +71,20 @@
                 android:layout_margin="8dp"
                 android:fontFamily="sans-serif-light"
                 android:textSize="12sp"
+                android:autoLink="web"
                 android:scrollbarStyle="insideInset"
-                android:text="Food2Fork is an ever expanding recipe website. It strives to bring people closer by being able share your favorite meals and recipes with everyone around the world. By combining ingredients and title search, Food2Fork makes finding recipes easy.\n\nFood2Fork recipes are from everyday cooks and chefs that have perfected the recipe over time. Food2Fork recipes range from the decadent to the simple for whatever mood you are in. With recipes being added daily there will alway be something new for you to crave.\n\n\n\nAutor: Milan Samardzic\nVersion: 1.0\nYear: 2015"
+                android:text="@string/my_app_info"
+                android:id="@+id/textView1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="12sp"
+                android:scrollbarStyle="insideInset"
+                android:layout_below="@+id/textView1"
+                android:text="About Food2Fork\n\nFood2Fork is an ever expanding recipe website. It strives to bring people closer by being able share your favorite meals and recipes with everyone around the world. By combining ingredients and title search, Food2Fork makes finding recipes easy.\n\nFood2Fork recipes are from everyday cooks and chefs that have perfected the recipe over time. Food2Fork recipes range from the decadent to the simple for whatever mood you are in. With recipes being added daily there will alway be something new for you to crave.\n\n\n\nAutor: Milan Samardzic\nVersion: 1.0\nYear: 2015"
                 android:id="@+id/textView2" />
 
             <ImageView

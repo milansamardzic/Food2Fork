@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Food2Fork</string>
+    <string name="app_name">OhMyMeal</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="send_to">Share with</string>
@@ -10,4 +10,6 @@
     <string name="drawer_close">close</string>
     <string name="Add_to_cal">Add to cal</string>
     <string name="name">Food2Fork</string>
+    <string name="my_app_info">Oh my meal native android application. For now this is OpenSource project. All recipes are from http://food2fork.com/. The author does not bear any responsibility resulting from use of the app.
+    If you have additional question or suggestion, send me a email. Also food2fork API is not completely free.\nIf you like app, and want to support me, you can contact me via form in app or sending me a email.\n\nApp icons if from this guy https://www.iconfinder.com/webalys</string>
 </resources>
