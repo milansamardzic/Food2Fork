@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

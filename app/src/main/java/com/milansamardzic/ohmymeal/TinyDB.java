@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 /*
  * Copyright 2014 KC Ochibili
  *
@@ -41,7 +41,9 @@ public class TinyDB {
 
     public TinyDB(Context appContext) {
         mContext = appContext;
+        if(mContext != null){
         preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        }
     }
 
     public Bitmap getImage(String path) {
@@ -218,10 +220,14 @@ public class TinyDB {
         // the comma like character used below is not a comma it is the SINGLE
         // LOW-9 QUOTATION MARK unicode 201A and unicode 2017 they are used for
         // seprating the items in the list
-        String[] mylist = TextUtils
-                .split(preferences.getString(key, ""), "‚‗‚");
-        ArrayList<String> gottenlist = new ArrayList<String>(
-                Arrays.asList(mylist));
+        ArrayList<String> gottenlist = new ArrayList<String>();
+        try {
+            String[] mylist = TextUtils
+                    .split(preferences.getString(key, ""), "‚‗‚");
+            gottenlist = new ArrayList<String>(
+                    Arrays.asList(mylist));
+        } catch (Exception e){}
+
         return gottenlist;
     }
 

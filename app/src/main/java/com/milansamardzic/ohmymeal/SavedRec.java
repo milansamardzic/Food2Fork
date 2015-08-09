@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -80,21 +79,24 @@ public class SavedRec extends android.support.v4.app.Fragment {
     }
 
     private void loadSaved() {
+        ArrayList check = null;
         TinyDB tinydb = new TinyDB(getActivity());
-        ArrayList check = (tinydb.getList("MySaved"));
-        mySavedAdapter.clear();
-        JSONObject jsonObject = null;
-        JSONObject items = null;
-        for (int i=0; i<check.size(); i++)
-        {
-            try {
-                jsonObject = new JSONObject(String.valueOf(check.get(i)));
-                items = jsonObject.getJSONObject("recipe");
-                Detalji det = Detalji.fetchDetalje(items);
-                mySavedAdapter.addAll(det);
+        check = (tinydb.getList("MySaved"));
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+        if (check != null && !check.isEmpty()) {
+            mySavedAdapter.clear();
+            JSONObject jsonObject = null;
+            JSONObject items = null;
+            for (int i = 0; i < check.size(); i++) {
+                try {
+                    jsonObject = new JSONObject(String.valueOf(check.get(i)));
+                    items = jsonObject.getJSONObject("recipe");
+                    Detalji det = Detalji.fetchDetalje(items);
+                    mySavedAdapter.addAll(det);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.content.Intent;
 import android.os.Bundle;

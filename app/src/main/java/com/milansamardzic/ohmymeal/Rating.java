@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -25,40 +26,41 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by ms on 1/22/15.
+ * Created by ms on 1/18/15.
  */
-public class SearchFragment extends Fragment {
+public class Rating extends Fragment {
+
     private ListView lvMovies;
     private ReceptiAdapter adapterMovies;
     private Fork2FoodClient client;
+    public static final String MOVIE_DETAIL_KEY = "recipes";
+    private int currentVisibleItemCount;
+    private int currentFirstVisibleItem;
+    public static int page=1;
+    FloatingActionButton fabMore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final String strtext = getArguments().getString("query_string");
-
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
-
+      //  fabMore =  (FloatingActionButton) rootView.findViewById(R.id.fabbuttonLoad);
         View toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
-
-        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
-        //---- animation
 
         LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(
                 getActivity(), R.anim.list_layout_controller);
 
         //----- listView
-
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        fetchBoxOfficeMovies(strtext);
+                        fetchBoxOfficeMovies("&sort=r");
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 2000);
@@ -66,17 +68,38 @@ public class SearchFragment extends Fragment {
 
         });
 
-  Log.d("query_string", "str " + strtext);
-
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
 
         ArrayList<Recept> aMovies = new ArrayList<Recept>();
         adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
         lvMovies.setAdapter(adapterMovies);
         // Fetch the data remotely
-        fetchBoxOfficeMovies(strtext);
+        fetchBoxOfficeMovies("&sort=r");
         setupMovieSelectedListener();
+    //    fabMore.attachToListView(lvMovies);
         lvMovies.setLayoutAnimation(controller);
+/*
+       fabMore.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               showMore();
+               //fabMore.show(true);
+           }
+       });*/
         return rootView;
+    }
+
+    private void showMore() {
+        page++;
+        Toast.makeText(getActivity(), "kraj " + page, Toast.LENGTH_SHORT).show();
+        fetchBoxOfficeMovies("&sort=r&"+page);
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void fetchBoxOfficeMovies(String link) {
@@ -118,6 +141,5 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-
 
 }

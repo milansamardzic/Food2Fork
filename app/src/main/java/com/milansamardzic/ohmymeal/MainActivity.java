@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.annotation.TargetApi;
 import android.app.SearchManager;

@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.etsy.android.grid.StaggeredGridView;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -28,38 +25,40 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by ms on 1/28/15.
+ * Created by ms on 1/22/15.
  */
-public class Vegan  extends Fragment {
-
+public class SearchFragment extends Fragment {
     private ListView lvMovies;
     private ReceptiAdapter adapterMovies;
     private Fork2FoodClient client;
-    public static final String MOVIE_DETAIL_KEY = "recipes";
-    private int currentVisibleItemCount;
-    private int currentFirstVisibleItem;
-    public static int page = 1;
-    FloatingActionButton fabMore;
-    final String strtext = "vegan";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.tranding, container, false);
+        final String strtext = getArguments().getString("query_string");
+
+        final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
 
+        View toolbar = rootView.findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
 
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        //---- animation
+
+        LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(
+                getActivity(), R.anim.list_layout_controller);
 
         //----- listView
-        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
+
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity().getApplicationContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        fetchBoxOfficeMovies("&sort=t");
+                        fetchBoxOfficeMovies(strtext);
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 2000);
@@ -67,24 +66,16 @@ public class Vegan  extends Fragment {
 
         });
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+  Log.d("query_string", "str " + strtext);
+
 
         ArrayList<Recept> aMovies = new ArrayList<Recept>();
         adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
-
-        StaggeredGridView gridview = (StaggeredGridView) rootView.findViewById(R.id.gridview);
-        gridview.setAdapter(adapterMovies);
-        fetchBoxOfficeMovies("&sort=t");
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent i = new Intent(getActivity(), DetailAct.class);
-                // i.putExtra(MOVIE_DETAIL_KEY, adapterMovies.getItem(position));
-                i.putExtra("POSITION_RID", adapterMovies.getItem(position).getrId());
-                i.putExtra("POSITION", position);
-                startActivity(i);
-            }
-        });
-
+        lvMovies.setAdapter(adapterMovies);
+        // Fetch the data remotely
+        fetchBoxOfficeMovies(strtext);
+        setupMovieSelectedListener();
+        lvMovies.setLayoutAnimation(controller);
         return rootView;
     }
 

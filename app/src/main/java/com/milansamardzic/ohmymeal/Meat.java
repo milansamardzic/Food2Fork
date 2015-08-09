@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,9 +26,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by ms on 1/18/15.
+ * Created by ms on 1/28/15.
  */
-public class Rating extends Fragment {
+public class Meat  extends Fragment {
 
     private ListView lvMovies;
     private ReceptiAdapter adapterMovies;
@@ -36,15 +36,15 @@ public class Rating extends Fragment {
     public static final String MOVIE_DETAIL_KEY = "recipes";
     private int currentVisibleItemCount;
     private int currentFirstVisibleItem;
-    public static int page=1;
+    public static int page = 1;
     FloatingActionButton fabMore;
+    final String strtext = "meat";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         lvMovies = (ListView) rootView.findViewById(R.id.lvRecepti);
-      //  fabMore =  (FloatingActionButton) rootView.findViewById(R.id.fabbuttonLoad);
         View toolbar = rootView.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
 
@@ -73,33 +73,12 @@ public class Rating extends Fragment {
         ArrayList<Recept> aMovies = new ArrayList<Recept>();
         adapterMovies = new ReceptiAdapter(getActivity(), aMovies);
         lvMovies.setAdapter(adapterMovies);
-        // Fetch the data remotely
-        fetchBoxOfficeMovies("&sort=r");
+
+        fetchBoxOfficeMovies(strtext);
         setupMovieSelectedListener();
-    //    fabMore.attachToListView(lvMovies);
         lvMovies.setLayoutAnimation(controller);
-/*
-       fabMore.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               showMore();
-               //fabMore.show(true);
-           }
-       });*/
+
         return rootView;
-    }
-
-    private void showMore() {
-        page++;
-        Toast.makeText(getActivity(), "kraj " + page, Toast.LENGTH_SHORT).show();
-        fetchBoxOfficeMovies("&sort=r&"+page);
-
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     public void fetchBoxOfficeMovies(String link) {
@@ -141,5 +120,6 @@ public class Rating extends Fragment {
             }
         });
     }
+
 
 }

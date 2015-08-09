@@ -1,4 +1,4 @@
-package com.milansamardzic.food2fork;
+package com.milansamardzic.ohmymeal;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -35,7 +35,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by ms on 1/18/15.
@@ -57,7 +56,7 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
     public String f2fUrl=null;
     public String publisherUrl = null;
     public String ingredientsString = "";
-    String name = "Food2Fork";
+    String name = "OhMyMeal andorid app";
     Button btnPublisher;
     TextView tvIngredients;
     Button btnSocialRank;
@@ -210,34 +209,36 @@ public class DetailAct extends ActionBarActivity implements OnScrollChangedCallb
         TinyDB tinydb = new TinyDB(getApplicationContext());
         ArrayList check = (tinydb.getList("MySaved"));
         Boolean isDeleted=false;
-
-        ars = check;
-        for(int i=0; i<ars.size(); i++) {
-            if (ars.get(i).contains(rid)) {
-                ars.remove(i);
-                fabB.setImageResource(R.drawable.fork);
-                Toast.makeText(getApplicationContext(), "Removed", Toast.LENGTH_SHORT).show();
-                tinydb.putList("MySaved", ars);
-                isDeleted = true;
-            }else{ isDeleted=false;}
-        }
-
-        if (isDeleted==false) {
-
-            if (check.isEmpty() == true) {
-                ars.add(saveJson);
-                fabB.setImageResource(R.drawable.fork_fav);
-                tinydb.putList("MySaved", ars);
-            } else {
-
-                ars.add(saveJson);
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-                fabB.setImageResource(R.drawable.fork_fav);
-                tinydb.putList("MySaved", ars);
-
+        try {
+            ars = check;
+            for (int i = 0; i < ars.size(); i++) {
+                if (ars.get(i).contains(rid)) {
+                    ars.remove(i);
+                    fabB.setImageResource(R.drawable.fork);
+                    Toast.makeText(getApplicationContext(), "Removed", Toast.LENGTH_SHORT).show();
+                    tinydb.putList("MySaved", ars);
+                    isDeleted = true;
+                } else {
+                    isDeleted = false;
+                }
             }
-        }
 
+            if (isDeleted == false) {
+
+                if (check.isEmpty() == true) {
+                    ars.add(saveJson);
+                    fabB.setImageResource(R.drawable.fork_fav);
+                    tinydb.putList("MySaved", ars);
+                } else {
+
+                    ars.add(saveJson);
+                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    fabB.setImageResource(R.drawable.fork_fav);
+                    tinydb.putList("MySaved", ars);
+
+                }
+            }
+        }catch (Exception e){Log.e("aaa", e.getMessage());}
 
     }
 
